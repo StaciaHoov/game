@@ -38,7 +38,7 @@ puts Dict.list(states)
 
 # puts every city in state
 puts '-' * 10
-Dist.list(cities)
+Dict.list(cities)
 
 puts '-' * 10
 state = Dict.get(states, 'Texas')
@@ -47,7 +47,7 @@ if !state # by default Ruby puts nil if something not there
     puts "Sorry, no Texas."
 end
 
-city = Dist.get(cities, 'TX', 'Does not exist.') # default values using ||= with the nil result
+city = Dict.get(cities, 'TX', 'Does not exist.') # default values using ||= with the nil result
 puts "The city for the state 'TX' is #{city}"
 
 

@@ -7,24 +7,24 @@ module Dict
         return aDict 
     end
     
-    def Dict.hash_key(aDict, key) # Given key, create number then convert to an index for aDict's buckets
+    def Dict.hash_key(aDict, key) # Given key (string), create number with hash function. Use modelo to make it smaller - index for aDict's buckets
         return key.hash % aDict.length 
     end
     
-    def Dict.get_buckets(aDict, key) # Given key, find the bucket where it would go.
+    def Dict.get_bucket(aDict, key) # Given key, find the bucket where it would go.
         bucket_id = Dict.hash_key(aDict, key)
         return aDict[bucket_id] 
     end
     
     def Dict.get_slot(aDict, key, default=nil) # Returns index, key, and value of a slot found in a bucket
-        bucket = Dict.get_buckets(aDict, key) 
+        bucket = Dict.get_bucket(aDict, key) 
         bucket.each_with_index do |kv,i|
             k, v = kv
             if key == k
                 return i, k, v 
             end
         end
-        return -1, key, dafault 
+        return -1, key, default 
     end
     
     def Dict.get(aDict, key, default=nil) # Gets value in bucket for given key, or default.
